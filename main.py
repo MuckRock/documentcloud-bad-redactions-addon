@@ -38,7 +38,7 @@ class BadRedactions(AddOn):
 
             counter = 0
 
-            for document in self.client.documents.list(id__in=self.documents):
+            for document in self.get_documents():
                 # identifying bad redactions using the x-ray library
                 bad_redactions = xray.inspect(document.pdf)
                 # to hold the redacttion json dictionary for each individual page in this document
