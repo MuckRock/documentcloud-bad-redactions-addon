@@ -16,4 +16,4 @@ properties:
       title: Redact bad redactions found?
       type: boolean
 categories:
-  - ai
+  - extraction
