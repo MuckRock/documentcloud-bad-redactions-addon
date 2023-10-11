@@ -31,12 +31,12 @@ class BadRedactions(AddOn):
             writer.writeheader()
 
             counter = 0
+            # to hold the redacttion json dictionary for each individual page in this document
+            eachRedact = []
 
             for document in self.get_documents():
                 # identifying bad redactions using the x-ray library
                 bad_redactions = xray.inspect(document.pdf)
-                # to hold the redacttion json dictionary for each individual page in this document
-                eachRedact = []
 
                 for page in bad_redactions.keys():
                     # get the page spec from the api
