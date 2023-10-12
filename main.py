@@ -22,6 +22,10 @@ class BadRedactions(AddOn):
         """The main add-on functionality goes here."""
         self.set_message("Identifying Bad Redactions start!")
 
+        if not self.documents:
+            self.set_message("Please select at least one document.")
+            return
+
         redbadred = self.data.get("fix")
 
         # creating a csv file
