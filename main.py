@@ -20,6 +20,10 @@ class BadRedactions(AddOn):
 
     def main(self):
         """The main add-on functionality goes here."""
+        if self.get_document_count() is None:
+            self.set_message("Please select at least one document.")
+            return
+
         self.set_message("Identifying Bad Redactions start!")
 
         redbadred = self.data.get("fix")
