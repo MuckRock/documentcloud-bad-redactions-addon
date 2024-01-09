@@ -4,8 +4,6 @@ description: >-
 instructions: >-
     This Add-On uses the [x-ray library](https://free.law/projects/x-ray) to identify bad redactions,
     creates annotations where bad redactions exist, and exports document_ids, page numbers, bounding boxes and the text in a csv file.
-
-    **Warning**: If you select the check box, this will redact bad redactions and delete any existing bad redaction annotations from the document. 
 type: object
 documents:
   - selected
@@ -14,5 +12,6 @@ properties:
     fix:
       title: Redact bad redactions found?
       type: boolean
+      description: Redactions are irreversible!
 categories:
   - extraction
