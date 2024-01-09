@@ -1,13 +1,11 @@
 title: Bad Redactions
 description: >-
-    This Add-on allows you to select multiple documents, uses x-ray library to identify bad redactions,
+    Uncover poorly redacted text hidden in documents.
+instructions: >-
+    This Add-On uses the [x-ray library](https://free.law/projects/x-ray) to identify bad redactions,
     creates annotations where bad redactions exist, and exports document_ids, page numbers, bounding boxes and the text in a csv file.
-    By checking the box, this will redact bad redactions and delete any existing bad redaction annotations.
 
-
-    **Warning**: Once you check this box and run this Add-On, you cannot undo redactions.
-    [Learn more about X-Ray Library](https://free.law/projects/x-ray).
-instructions: ''
+    **Warning**: If you select the check box, this will redact bad redactions and delete any existing bad redaction annotations from the document. 
 type: object
 documents:
   - selected
