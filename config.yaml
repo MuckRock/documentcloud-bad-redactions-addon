@@ -15,3 +15,6 @@ properties:
       description: Redactions are irreversible!
 categories:
   - extraction
+eventOptions:
+  events:
+    - upload
