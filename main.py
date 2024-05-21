@@ -1,6 +1,7 @@
 """
 This is an identifying bad redactions add-on for DocumentCloud.
-Use the x-ray library, creates annotations where bad redactions exist, and returns a csv file including the bounding boxes and the text.
+Use the x-ray library, creates annotations where bad redactions exist, 
+and returns a csv file including the bounding boxes and the text.
 Option to redact bad redactions and delete any existing bad redaction annotations.
 
 It demonstrates how to write a add-on which can be activated from the
@@ -8,10 +9,9 @@ DocumentCloud add-on system and run using Github Actions.  It receives data
 from DocumentCloud via the request dispatch and writes data back to
 DocumentCloud using the standard API
 """
-
+import csv
 from documentcloud.addon import AddOn
 import xray
-import csv
 from listcrunch import uncrunch
 
 
@@ -29,14 +29,14 @@ class BadRedactions(AddOn):
         redbadred = self.data.get("fix")
 
         # creating a csv file
-        with open("bad_redactions.csv", "w+") as file_:
+        with open("bad_redactions.csv", "w+", encoding="utf-8") as file_:
             field_names = ["document_id", "page_num", "bbox", "text"]
             writer = csv.DictWriter(file_, fieldnames=field_names)
             writer.writeheader()
 
             counter = 0
             # to hold the redacttion json dictionary for each individual page in this document
-            eachRedact = []
+            each_redact = []
 
             for document in self.get_documents():
                 # identifying bad redactions using the x-ray library
@@ -49,7 +49,8 @@ class BadRedactions(AddOn):
                     dimension = dimensions[page - 1]
                     # dimension is now the dimension of the current page
                     width, height = [float(d) for d in dimension.split("x")]
-                    # the dimension is a string "612.0x792.0" two floats as string separated by a "x"
+                    # the dimension is a string "612.0x792.0"
+                    # two floats as string separated by a "x"
 
                     for i in range(len(bad_redactions[page])):
                         counter += 1
@@ -66,11 +67,12 @@ class BadRedactions(AddOn):
                         # creating annotations where bad redactions occur
                         title = "Bad redaction detected"
 
-                        # if the redaction is being fixed, add it to the list of bound boxes for the post request
+                        # if the redaction is being fixed,
+                        # add it to the list of bound boxes for the post request
                         if redbadred:
                             # redact bad redactions
                             # append the specific json dict for this page to global dict
-                            eachRedact.append(
+                            each_redact.append(
                                 {
                                     "page_number": page - 1,
                                     "x1": bbox[0] / width,
@@ -98,12 +100,12 @@ class BadRedactions(AddOn):
                         if annotation.title == "bad redaction":
                             annotation.delete()
 
-            if redbadred and eachRedact != []:
-                self.set_message("Redacting Bad Redactions start!")
-                # make the api call for this document
-                self.client.post(
-                    f"documents/{document.id}/redactions/", json=eachRedact
-                )
+                if redbadred and each_redact:
+                    self.set_message("Redacting Bad Redactions start!")
+                    # make the api call for this document
+                    self.client.post(
+                        f"documents/{document.id}/redactions/", json=each_redact
+                    )
 
             if counter == 0:
                 self.set_message("No Bad Redactions Found")
