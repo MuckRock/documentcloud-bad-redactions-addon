@@ -84,7 +84,7 @@ class BadRedactions(AddOn):
                             document.annotations.create(
                                 title,
                                 page - 1,
-                                "bad redaction exists",
+                                bad_redactions[page][i]["text"],
                                 "private",
                                 bbox[0] / width,
                                 bbox[1] / height,
