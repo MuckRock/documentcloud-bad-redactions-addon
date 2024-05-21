@@ -64,7 +64,7 @@ class BadRedactions(AddOn):
                         )
 
                         # creating annotations where bad redactions occur
-                        title = "bad redaction"
+                        title = "Bad redaction detected"
 
                         # if the redaction is being fixed, add it to the list of bound boxes for the post request
                         if redbadred:
