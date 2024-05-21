@@ -97,7 +97,7 @@ class BadRedactions(AddOn):
                 if redbadred:
                     # go through and delete any existing bad redaction annotations
                     for annotation in document.annotations:
-                        if annotation.title == "bad redaction":
+                        if annotation.title == "Bad redaction detected":
                             annotation.delete()
 
                 if redbadred and each_redact:

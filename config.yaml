@@ -2,8 +2,12 @@ title: Bad Redactions
 description: >-
     Uncover poorly redacted text hidden in documents.
 instructions: >-
-    This Add-On uses the [x-ray library](https://free.law/projects/x-ray) to identify bad redactions,
-    creates annotations where bad redactions exist, and exports document_ids, page numbers, bounding boxes and the text in a csv file.
+    This Add-On uses the [x-ray library](https://free.law/projects/x-ray) to identify bad redactions. 
+    The Add-On leaves an annotation where bad redactions exist in the document and generates a CSV
+    with the document ID, page number of the bad redaction, and the underlying text detected.
+    
+    Running the Add-On with the redact bad redactions box selected deletes the bad redactions annotations
+    left on the document and deletes the annotations and also redacts the document properly. This operation is irreversible. 
 type: object
 documents:
   - selected
@@ -12,7 +16,7 @@ properties:
     fix:
       title: Redact bad redactions found?
       type: boolean
-      description: Redactions are irreversible!
+      description: This option will delete any bad redaction annotations on the document and redact the document properly. Redactions are irreversible!
 categories:
   - extraction
 eventOptions:
