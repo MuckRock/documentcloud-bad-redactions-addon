@@ -3,7 +3,7 @@ description: >-
     Uncover poorly redacted text hidden in documents.
 instructions: >-
     This Add-On uses the [x-ray library](https://free.law/projects/x-ray) to identify bad redactions. 
-    The Add-On leaves an annotation where bad redactions exist in the document and generates a CSV
+    The Add-On leaves annotations where bad redactions exist in the document and generates a CSV
     with the document ID, page number of the bad redaction, and the underlying text detected.
     
     Running the Add-On with the redact bad redactions box selected deletes the bad redactions annotations
