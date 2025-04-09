@@ -42,10 +42,25 @@ class BadRedactions(AddOn):
                 # identifying bad redactions using the x-ray library
                 try:
                     bad_redactions = xray.inspect(document.pdf)
-                except Exception:
+                except UnicodeDecodeError:
                     self.send_mail(
-                        f"Error processing document {document.id} with bad redactions",
-                        'This document has some kind of formatting issue. Please try compressing the document using the PDF Compression Add-On: https://www.documentcloud.org/add-ons/MuckRock/compress-pdf-add-on/ first.'
+                        f"Error processing document {document.canonical_url} with bad redactions",
+                        'This document has some kind of formatting issue '
+                        'that is preventing it from working with the Add-On. '
+                        'Please try compressing the document using'
+                        ' the PDF Compression Add-On: ' 
+                        'https://www.documentcloud.org/add-ons/MuckRock/compress-pdf-add-on/'
+                        ' first. If you are still experiencing issues with running' 
+                        ' Bad Redactions on this document after this, please reach out to us' 
+                        ' at info@documentcloud.org.'
+                    )
+                    continue
+                finally:
+                    self.send_mail(
+                        "Error processing document document.canonical_url with bad redactions", 
+                        "If you receive this error, please reach out to us at "
+                        "info@documentcloud.org with a copy of this email and the "
+                        "document you tried to analyze for debugging."
                     )
                     continue
 
