@@ -55,7 +55,7 @@ class BadRedactions(AddOn):
                         ' at info@documentcloud.org.'
                     )
                     continue
-                finally:
+                except Exception:
                     self.send_mail(
                         "Error processing document document.canonical_url with bad redactions", 
                         "If you receive this error, please reach out to us at "
