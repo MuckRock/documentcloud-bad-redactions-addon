@@ -40,7 +40,14 @@ class BadRedactions(AddOn):
 
             for document in self.get_documents():
                 # identifying bad redactions using the x-ray library
-                bad_redactions = xray.inspect(document.pdf)
+                try:
+                    bad_redactions = xray.inspect(document.pdf)
+                except Exception:
+                    self.send_mail(
+                        f"Error processing document {document.id} with bad redactions",
+                        'This document has some kind of formatting issue. Please try compressing the document using the <a href="https://www.documentcloud.org/add-ons/MuckRock/compress-pdf-add-on/">PDF Compression Add-On</a> first.'
+                    )
+                    continue
 
                 for page in bad_redactions.keys():
                     # get the page spec from the api
