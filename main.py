@@ -42,7 +42,7 @@ class BadRedactions(AddOn):
                 # identifying bad redactions using the x-ray library
                 try:
                     bad_redactions = xray.inspect(document.pdf)
-                except UnicodeDecodeError:
+                except SystemError:
                     self.send_mail(
                         f"Error processing document {document.canonical_url} with bad redactions",
                         'This document has some kind of formatting issue '
@@ -57,7 +57,7 @@ class BadRedactions(AddOn):
                     continue
                 except Exception:
                     self.send_mail(
-                        "Error processing document document.canonical_url with bad redactions", 
+                        f"Error processing document {document.canonical_url} with bad redactions", 
                         "If you receive this error, please reach out to us at "
                         "info@documentcloud.org with a copy of this email and the "
                         "document you tried to analyze for debugging."
