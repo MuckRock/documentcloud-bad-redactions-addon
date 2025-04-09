@@ -45,7 +45,7 @@ class BadRedactions(AddOn):
                 except SystemError:
                     self.send_mail(
                         f"Error processing document {document.canonical_url} with bad redactions",
-                        'This document has some kind of formatting issue '
+                        'This document likely has a formatting issue '
                         'that is preventing it from working with the Add-On. '
                         'Please try compressing the document using'
                         ' the PDF Compression Add-On: ' 
