@@ -45,7 +45,7 @@ class BadRedactions(AddOn):
                 except Exception:
                     self.send_mail(
                         f"Error processing document {document.id} with bad redactions",
-                        'This document has some kind of formatting issue. Please try compressing the document using the [PDF Compression Add-On](https://www.documentcloud.org/add-ons/MuckRock/compress-pdf-add-on/) first.'
+                        'This document has some kind of formatting issue. Please try compressing the document using the PDF Compression Add-On: https://www.documentcloud.org/add-ons/MuckRock/compress-pdf-add-on/ first.'
                     )
                     continue
 
