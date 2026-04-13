@@ -20,6 +20,7 @@ class BadRedactions(AddOn):
 
     def main(self):
         """The main add-on functionality goes here."""
+        self.client.session.headers.update({'User-Agent': 'Bad Redactions Add-On'})
         if self.get_document_count() is None:
             self.set_message("Please select at least one document.")
             return
