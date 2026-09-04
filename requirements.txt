@@ -1,3 +1,4 @@
-python-documentcloud==4.4.1
+python-documentcloud==4.8.1
 requests
 x-ray
+python-squarelet==0.6.0
